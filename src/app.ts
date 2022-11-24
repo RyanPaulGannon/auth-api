@@ -3,12 +3,13 @@ import cors from "cors"
 import bcrypt from "bcrypt"
 import express, { Application, Request, Response, NextFunction } from "express"
 
-import { User } from "./types/userType"
 import {
   checkIfClockNumberExists,
   checkIfEmailExists,
   registerUser,
 } from "./database/userPrisma"
+import { User } from "./types/userType"
+import { sanitizeUserFrontEnd } from "./services/userService"
 
 const app: Application = express()
 
@@ -47,7 +48,7 @@ app.post("/api/auth/register", async (req: Request, res: Response) => {
 
   const registeredUser = await registerUser(userData)
 
-  res.send({ body: registeredUser })
+  res.send({ body: sanitizeUserFrontEnd(registeredUser) })
 })
 
 app.listen(4000, () => console.log("Server running"))
