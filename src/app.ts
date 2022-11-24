@@ -32,10 +32,6 @@ app.post("/api/auth/register", async (req: Request, res: Response) => {
     return { statusCode: 400, statusMessage: "Passwords do not match" }
   }
 
-  if (password !== repeatPassword) {
-    return { statusCode: 400, statusMessage: "Passwords do not match" }
-  }
-
   const userData: User = {
     name,
     email,
