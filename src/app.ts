@@ -12,6 +12,7 @@ import { User } from "./types/userType"
 import { sanitizeUserFrontEnd } from "./services/userService"
 
 const app: Application = express()
+const port = process.env.PORT || 4000
 
 app.use(cors({ origin: "*" }))
 app.use(express.json())
@@ -51,4 +52,4 @@ app.post("/api/auth/register", async (req: Request, res: Response) => {
   res.send({ body: sanitizeUserFrontEnd(registeredUser) })
 })
 
-app.listen(4000, () => console.log("Server running"))
+app.listen(port, () => console.log("Server running"))
