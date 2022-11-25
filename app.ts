@@ -1,7 +1,7 @@
 import "dotenv/config"
 import cors from "cors"
 import bcrypt from "bcrypt"
-import express, { Application, Request, Response, NextFunction } from "express"
+import express, { Application, Request, Response } from "express"
 
 import {
   checkIfClockNumberExists,

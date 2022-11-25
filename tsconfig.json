@@ -3,7 +3,6 @@
     "target": "es6",
     "lib": ["esnext"],
     "module": "commonjs",
-    // "rootDir": "./src",
     "moduleResolution": "node",
     "rootDirs": ["./src/**/*"],
     "resolveJsonModule": true,
@@ -14,5 +13,5 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*", "package.json"]
+  "include": ["src/**/*", "package.json", ".github/database", ".github/app.ts"]
 }
