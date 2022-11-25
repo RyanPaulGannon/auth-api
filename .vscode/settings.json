@@ -1,4 +1,0 @@
-{
-  "appService.defaultWebAppToDeploy": "/subscriptions/9244a333-9cfc-47e6-924b-e97790f2008c/AppServices/subscriptions/9244a333-9cfc-47e6-924b-e97790f2008c/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/buxter-api-auth",
-  "appService.deploySubpath": "."
-}
