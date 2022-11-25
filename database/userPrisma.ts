@@ -1,5 +1,4 @@
 import prisma from "."
-import { User } from "../types/userType"
 
 export function checkIfEmailExists(email: string) {
   return prisma.user.findUnique({

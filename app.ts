@@ -52,4 +52,4 @@ app.post("/api/auth/register", async (req: Request, res: Response) => {
   res.send({ body: sanitizeUserFrontEnd(registeredUser) })
 })
 
-app.listen(port, () => console.log("Server running"))
+app.listen(port, () => console.log(`Server running on ${port}`))
