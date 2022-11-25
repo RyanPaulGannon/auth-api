@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.ts"
+    "dev": "nodemon src/app.ts",
+    "build": "tsc"
   },
   "prisma": {
     "schema": "./prisma/schema.prisma"
