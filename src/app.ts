@@ -52,4 +52,21 @@ app.post("/api/auth/register", async (req: Request, res: Response) => {
   res.send({ body: sanitizeUserFrontEnd(registeredUser) })
 })
 
+app.post("/api/auth/login", async (req, res) => {
+  const { clocknumber, password } = req.body
+
+  const userExists = await checkIfClockNumberExists(clocknumber)
+
+  if (!userExists) return res.send("User doesn't exist")
+
+  const checkIfPasswordsMatch = await bcrypt.compare(
+    password,
+    userExists.password
+  )
+
+  if (!checkIfPasswordsMatch) return res.send("Passwords don't match")
+
+  res.send({ body: sanitizeUserFrontEnd(userExists) })
+})
+
 app.listen(port, () => console.log(`Server running on ${port}`))
