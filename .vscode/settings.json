@@ -1,4 +1,5 @@
 {
   "appService.defaultWebAppToDeploy": "/subscriptions/9244a333-9cfc-47e6-924b-e97790f2008c/AppServices/subscriptions/9244a333-9cfc-47e6-924b-e97790f2008c/resourceGroups/Gannon_Industries/providers/Microsoft.Web/sites/buxter-api-auth",
-  "appService.deploySubpath": "."
+  "appService.deploySubpath": ".",
+  "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"]
 }
