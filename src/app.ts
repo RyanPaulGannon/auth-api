@@ -18,7 +18,7 @@ app.use(cors({ origin: "*" }))
 app.use(express.json())
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("T&A API")
+  res.send("T&A API TypeScript Node")
 })
 
 app.post("/api/auth/register", async (req: Request, res: Response) => {
