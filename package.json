@@ -2,14 +2,14 @@
   "name": "buxter-api-auth",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "dev": "nodemon src/app.ts",
-    "build": "tsc",
-    "start": "node dist/app.js"
+    "start": "ts-node dist/app.js",
+    "build": "tsc -p ."
   },
   "prisma": {
-    "schema": "./prisma/schema.prisma"
+    "schema": "./src/prisma/schema.prisma"
   },
   "keywords": [],
   "author": "",
