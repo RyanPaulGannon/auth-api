@@ -10,12 +10,16 @@ import {
 } from "./database/userPrisma"
 import { User } from "./types/userType"
 import { sanitizeUserFrontEnd } from "./services/userService"
+import { connect } from "./database"
 
 const app: Application = express()
 const port = process.env.PORT || 4000
 
 app.use(cors({ origin: "*" }))
 app.use(express.json())
+
+/* database */
+connect()
 
 app.get("/", (req: Request, res: Response) => {
   res.send("T&A API TypeScript Node")
