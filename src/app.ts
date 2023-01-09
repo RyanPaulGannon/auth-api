@@ -53,10 +53,10 @@ app.post("/api/auth/register", async (req: Request, res: Response) => {
 
   const registeredUser = await registerUser(userData)
 
-  res.send({ body: sanitizeUserFrontEnd(registeredUser) })
+  res.status(200).send({ body: sanitizeUserFrontEnd(registeredUser) })
 })
 
-app.post("/api/auth/login", async (req, res) => {
+app.post("/api/auth/login", async (req: Request, res: Response) => {
   const { clocknumber, password } = req.body
 
   const userExists = await checkIfClockNumberExists(clocknumber)
@@ -70,7 +70,7 @@ app.post("/api/auth/login", async (req, res) => {
 
   if (!checkIfPasswordsMatch) return res.send("Passwords don't match")
 
-  res.send({ body: sanitizeUserFrontEnd(userExists) })
+  res.status(200).send({ body: sanitizeUserFrontEnd(userExists) })
 })
 
 app.listen(port, () => console.log(`Server running on ${port}`))
