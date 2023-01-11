@@ -31,3 +31,8 @@ model RefreshToken {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }
+
+model Shift2A {
+    id    String     @id @default(auto()) @map("_id") @db.ObjectId
+    Dates DateTime[]
+}

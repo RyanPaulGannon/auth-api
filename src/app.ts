@@ -11,6 +11,7 @@ import {
 import { User } from "./types/userType"
 import { sanitizeUserFrontEnd } from "./services/userService"
 import { connect } from "./database"
+import { postShifts } from "./database/shifts"
 
 const app: Application = express()
 const port = process.env.PORT || 4000
@@ -72,5 +73,18 @@ app.post("/api/auth/login", async (req: Request, res: Response) => {
 
   res.status(200).send({ body: sanitizeUserFrontEnd(userExists) })
 })
+
+app
+  .route("/api/auth/shifts")
+  .post(async (req: Request, res: Response) => {
+    let date = new Date()
+    let isoDate: any = date.toISOString()
+
+    await postShifts(isoDate)
+    res.send("Worked")
+  })
+  .get(async (req: Request, res: Response) => {
+    // const data = await getShifts()
+  })
 
 app.listen(port, () => console.log(`Server running on ${port}`))
