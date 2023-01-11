@@ -8,8 +8,6 @@ export function postShifts(date: Date) {
   })
 }
 
-// export function getShifts() {
-//   return prisma.shift2A.findMany({
-//     where: { id },
-//   })
-// }
+export function getShifts() {
+  return prisma.shift2A.findMany()
+}

@@ -36,3 +36,10 @@ model Shift2A {
     id    String     @id @default(auto()) @map("_id") @db.ObjectId
     Dates DateTime[]
 }
+
+model HolidayBooking {
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    name      String
+    Dates     String
+    createdAt DateTime @default(now())
+}

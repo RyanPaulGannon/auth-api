@@ -10,21 +10,19 @@ import {
 } from "./database/userPrisma"
 import { User } from "./types/userType"
 import { sanitizeUserFrontEnd } from "./services/userService"
+import { getShifts, postShifts } from "./database/shifts"
+import { requestHoliday } from "./database/holidays"
 import { connect } from "./database"
-import { postShifts } from "./database/shifts"
 
 const app: Application = express()
 const port = process.env.PORT || 4000
 
-app.use(cors({ origin: "*" }))
 app.use(express.json())
+app.use(cors({ origin: "*" }))
+app.use(express.urlencoded({ extended: false }))
 
 /* database */
 connect()
-
-app.get("/", (req: Request, res: Response) => {
-  res.send("T&A API TypeScript Node")
-})
 
 app.post("/api/auth/register", async (req: Request, res: Response) => {
   const { name, email, clocknumber, password, repeatPassword } = req.body
@@ -74,17 +72,24 @@ app.post("/api/auth/login", async (req: Request, res: Response) => {
   res.status(200).send({ body: sanitizeUserFrontEnd(userExists) })
 })
 
+app.post("/api/holidayrequest", async (req: Request, res: Response) => {
+  const { name, date } = req.body
+  await requestHoliday(name, date)
+  res.status(200).send("Booked")
+})
+
 app
   .route("/api/auth/shifts")
   .post(async (req: Request, res: Response) => {
-    let date = new Date()
-    let isoDate: any = date.toISOString()
+    const date = req.body.date
+    const isoDate: any = date.toISOString()
 
     await postShifts(isoDate)
     res.send("Worked")
   })
   .get(async (req: Request, res: Response) => {
-    // const data = await getShifts()
+    const shifts = await getShifts()
+    res.send(shifts.map((shift) => shift.Dates))
   })
 
 app.listen(port, () => console.log(`Server running on ${port}`))
