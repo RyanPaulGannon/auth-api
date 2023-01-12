@@ -11,7 +11,7 @@ import {
 import { User } from "./types/userType"
 import { sanitizeUserFrontEnd } from "./services/userService"
 import { getShifts, postShifts } from "./database/shifts"
-import { requestHoliday } from "./database/holidays"
+import { checkDoubleBooking, requestHoliday } from "./database/holidays"
 import { connect } from "./database"
 
 const app: Application = express()
@@ -74,7 +74,13 @@ app.post("/api/auth/login", async (req: Request, res: Response) => {
 
 app.post("/api/holidayrequest", async (req: Request, res: Response) => {
   const { name, date } = req.body
-  await requestHoliday(name, date)
+  const booking = await checkDoubleBooking(name, date)
+
+  if (booking) {
+    return res.status(400).send("Date already booked")
+  } else {
+    await requestHoliday(name, date)
+  }
   res.status(200).send("Booked")
 })
 

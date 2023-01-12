@@ -8,3 +8,12 @@ export function requestHoliday(name: string, date: string) {
     },
   })
 }
+
+export function checkDoubleBooking(name: string, date: string) {
+  return prisma.holidayBooking.findFirst({
+    where: {
+      name,
+      Dates: date,
+    },
+  })
+}
