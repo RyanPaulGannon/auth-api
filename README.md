@@ -1,1 +1,1 @@
-# buxter-api-auth
+# auth-api
